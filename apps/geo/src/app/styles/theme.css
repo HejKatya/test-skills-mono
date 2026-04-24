@@ -1,0 +1,13 @@
+.light {
+  --bg: #ffffff;
+  --text: #111111;
+  --toolbar-bg: #ffffff;
+  --hover-bg: #eeeeee;
+}
+
+.dark {
+  --bg: #0f0f0f;
+  --text: #ffffff;
+  --toolbar-bg: #00000099;
+  --hover-bg: #37393b;
+}

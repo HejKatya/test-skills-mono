@@ -11,7 +11,6 @@ import InnerMap from './ui/InnerMap.vue';
 const theme = useTheme();
 
 export interface MapProps {
-  dark?: boolean;
   zoom?: number;
   center?: [number, number];
   pitch?: number;
@@ -31,9 +30,9 @@ const props = withDefaults(defineProps<MapProps>(), {
   container: 'map',
 });
 
-const darkClass = computed(() => (props.dark ? 'dark' : ''));
+// const darkClass = computed(() => (theme.value === 'dark' ? 'dark' : ''));
 const mapStyle = computed(() => {
-  const baseStyle = props.dark ? darkStyle : lightStyle;
+  const baseStyle = theme.value === 'dark' ? darkStyle : lightStyle;
 
   // Глубокое копирование, чтобы не мутировать исходный JSON
   const style = JSON.parse(JSON.stringify(baseStyle));
@@ -63,7 +62,6 @@ const options = computed<MapOptions>(() => ({
 
 <template>
   <div
-    :class="darkClass"
     :style="{
       width: '100%',
       height: '100%',

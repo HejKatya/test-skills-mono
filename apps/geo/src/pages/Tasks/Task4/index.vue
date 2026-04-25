@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import AddUserForm from 'src/widgets/AddUser/ui/AddUserForm.vue';
+</script>
 
 <template>
   <h2 class="text-xl font-bold">Задание 4</h2>
@@ -9,4 +11,5 @@
     4. Отправить запрос, если форма валидна<br />
     5. Можно использовать любые удобные инпутники, например из primevue<br />
   </div>
+  <AddUserForm class="mt-5" />
 </template>

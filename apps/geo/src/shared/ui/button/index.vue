@@ -69,7 +69,7 @@ const onClickLink = (e: MouseEvent, { navigate }: UnwrapRef<ReturnType<typeof us
 </script>
 
 <template>
-  <RouterLink v-if="to" :to="to" custom v-slot="routerSlot" >
+  <RouterLink v-if="to" :to="to" custom v-slot="routerSlot">
     <a
       @click="onClickLink($event, routerSlot)"
       :href="routerSlot.href"

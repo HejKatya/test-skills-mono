@@ -26,7 +26,7 @@ const labelClassCommon = computed(
         'group-active:text-text-hover group-active:dark:text-dark-text-hover':
           props.text && !props.disabled,
       },
-      { 'text-button-text dark:bg-dark-button-text': !props.text && !props.severity },
+      { 'text-button-text text-inherit dark:bg-dark-button-text': !props.text && !props.severity },
       {
         'text-button-text-secondary dark:bg-dark-button-text-secondary':
           !props.text && props.severity === 'secondary',

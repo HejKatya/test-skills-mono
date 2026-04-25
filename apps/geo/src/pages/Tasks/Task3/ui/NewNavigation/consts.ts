@@ -2,7 +2,52 @@ import type { NavItem } from './types';
 
 // чтобы элемент навигации корректно рендерился, нужно добавить соответствующие страницы (замокать)
 // и добавить их в роутере
-export const items: NavItem[] = [
+const items: NavItem[] = [
+  {
+    label: 'Исходные данные',
+    children: [
+      {
+        label: 'Исходные данные',
+        children: [
+          { label: 'По прибытию', to: { name: 'source-data' } },
+          { label: 'По прибытию поквартально', to: { name: 'source-data-quarterly' } },
+        ],
+      },
+
+      {
+        label: 'Макропоказатели',
+        children: [
+          { label: 'Показатель 1', to: { name: 'macro-indicator-1' } },
+          { label: 'Показатель 2', to: { name: 'macro-indicator-2' } },
+        ],
+      },
+      {
+        label: 'Заявки грузоотправителей',
+        to: { name: 'shipment-requests' },
+      },
+      {
+        label: 'Прогнозные данные',
+        to: { name: 'forecast-data' },
+      },
+      {
+        label: 'Общие уровни',
+        to: { name: 'general-levels' },
+      },
+      {
+        label: 'Контейнерные перевозки',
+        to: { name: 'container-transports' },
+      },
+      {
+        label: 'Порты и погранпереходы',
+        to: { name: 'ports' },
+      },
+      {
+        label: 'Междорожные корреспонденции',
+        to: { name: 'intermodal-communications' },
+      },
+    ],
+  },
+
   {
     label: 'Справочники',
     children: [
@@ -27,3 +72,5 @@ export const items: NavItem[] = [
     ],
   },
 ];
+
+export default items;

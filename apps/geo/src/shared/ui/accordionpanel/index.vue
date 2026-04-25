@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { StyleValue } from 'vue';
+import ChevronIcon from 'src/shared/assets/icons/common/chevron.svg';
 import type { ClassType } from 'src/shared/types';
 
 import AccordionContent from '../accordioncontent';
@@ -16,7 +17,7 @@ withDefaults(
   },
 );
 
-const show = defineModel({ default: true });
+const show = defineModel({ default: false });
 </script>
 
 <template>
@@ -39,7 +40,9 @@ const show = defineModel({ default: true });
       >
         {{ title }}
       </div>
-      <div :class="['i-common:chevron-up transition-all text-2xl', { 'rotate-180': !show }]" />
+      <div :class="['i-common:chevron-up transition-all text-2xl', { 'rotate-180': show }]">
+        <ChevronIcon />
+      </div>
     </button>
     <AccordionContent :show="show" content-class="pt-1">
       <slot />

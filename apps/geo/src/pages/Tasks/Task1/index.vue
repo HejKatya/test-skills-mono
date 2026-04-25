@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useTheme } from 'src/shared/lib/theme/useTheme';
 import Map from 'src/shared/ui/Map';
 import Toolbar from 'src/widgets/Toolbar';
 
@@ -15,12 +14,10 @@ const testPoints = [
   { long: 37.6256, lat: 55.751 },
   { long: 37.6288, lat: 55.7505 },
 ];
-// const theme = useTheme();
 </script>
 
 <template>
   <div class="h-full relative">
-    <!-- <div class="h-full relative" :class="theme"> -->
     <div class="absolute bg-white top-0 z-1000 mt-4 ml-4 p-4">
       <h2 class="text-xl font-bold">Задание 1</h2>
       <div class="w-150">

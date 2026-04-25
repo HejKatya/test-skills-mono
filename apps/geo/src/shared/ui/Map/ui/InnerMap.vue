@@ -130,17 +130,7 @@ watch(
 </script>
 
 <template>
-  <div ref="mapContainer" class="map-container">
+  <div ref="mapContainer" class="relative h-full min-h-[500px] w-full bg-[var(--bg)] rounded-xl">
     <slot />
   </div>
 </template>
-
-<style scoped>
-.map-container {
-  width: 100%;
-  height: 100%;
-  min-height: 500px;
-  position: relative;
-  background: var(--bg);
-}
-</style>

@@ -19,6 +19,7 @@ export default defineConfig({
     presetIcons({
       collections: {
         common: FileSystemIconLoader('./src/shared/assets/icons/common'),
+        toolbar: FileSystemIconLoader('./src/shared/assets/icons/toolbar'),
       },
       customizations: {
         iconCustomizer(collection, icon, props) {
@@ -27,6 +28,20 @@ export default defineConfig({
         },
       },
     }),
+  ],
+  safelist: [
+    'i-common:chevron',
+    'i-toolbar:search',
+    'i-toolbar:history',
+    'i-toolbar:map',
+    'i-toolbar:layers',
+    'i-toolbar:train-track',
+    'i-toolbar:earth',
+    'i-toolbar:sun',
+    'i-toolbar:moon',
+    'i-toolbar:folders',
+    'i-toolbar:bookmark',
+    'i-toolbar:download',
   ],
   transformers: [transformerDirectives()],
   rules: [

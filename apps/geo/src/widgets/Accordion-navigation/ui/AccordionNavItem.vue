@@ -10,38 +10,15 @@ defineProps<{
 
 <template>
   <AccordionPanel :title="item.label" hoverable>
-    <div v-if="item.children?.length" class="children">
+    <div v-if="item.children?.length" class="flex flex-col gap-1.5 pl-4">
       <div v-for="child in item.children" :key="child.label">
         <AccordionNavItem v-if="child.children?.length" :item="child" />
         <Button
           v-else
           :label="child.label"
-          root-class="nav-button"
-          class="root-btn"
-          :style="{ color: '#0f172b' }"
+          root-class="!w-full !justify-start !bg-white !px-2.5 !py-1.5 !text-sm !rounded-lg !text-[#0f172b] hover:!bg-slate-100 [&_*]:!bg-transparent"
         />
       </div>
     </div>
   </AccordionPanel>
 </template>
-
-<style scoped>
-.children {
-  padding-left: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.nav-button {
-  background-color: #fff;
-  width: 100%;
-  justify-content: flex-start;
-  padding: 6px 10px;
-  font-size: 14px;
-  border-radius: 8px;
-}
-
-.nav-button .text-inherit {
-  color: #0f172b;
-}
-</style>

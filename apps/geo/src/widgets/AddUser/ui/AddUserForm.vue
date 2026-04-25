@@ -1,10 +1,19 @@
 <script setup lang="ts">
+import { useMutation } from '@tanstack/vue-query';
 import { toTypedSchema } from '@vee-validate/zod';
 import { useToast } from 'primevue/usetoast';
+import type { AddUserInput } from 'src/shared/api/client';
+import { V1BaseUsersService } from 'src/shared/api/client/sdk.gen';
 import { useForm } from 'vee-validate';
 
-import { addUser } from '../api/addUser';
 import { addUserSchema } from '../model/schema';
+
+const addUserMutation = useMutation({
+  mutationFn: (body: AddUserInput) =>
+    V1BaseUsersService.addUser({
+      body,
+    }),
+});
 
 const { defineField, handleSubmit, errors, isSubmitting, resetForm, meta, values } = useForm({
   validationSchema: toTypedSchema(addUserSchema),
@@ -21,7 +30,7 @@ const [age, ageAttrs] = defineField('age');
 
 const onSubmit = handleSubmit(async (values) => {
   try {
-    await addUser(values);
+    await addUserMutation.mutateAsync(values);
 
     toast.add({
       severity: 'success',
@@ -63,7 +72,7 @@ const onSubmit = handleSubmit(async (values) => {
     <button
       class="rounded bg-black px-4 py-2 text-white disabled:opacity-50"
       type="submit"
-      :disabled="isSubmitting || !meta.valid || !meta.dirty"
+      :disabled="!meta.valid || !meta.dirty || addUserMutation.isPending.value"
     >
       {{ isSubmitting ? 'Отправка...' : 'Добавить пользователя' }}
     </button>

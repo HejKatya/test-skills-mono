@@ -14,14 +14,19 @@ const emit = defineEmits<{
   (e: 'delete', row: User): void;
 }>();
 
-const isModalOpen = ref(false);
-const selectedRow = ref<any>(null);
-const toast = useToast();
-const openModal = (row: any) => {
+const selectedRow = ref<User | null>(null);
+
+const openModal = (row: User) => {
   selectedRow.value = row;
   isModalOpen.value = true;
 };
+
+const isModalOpen = ref(false);
+const toast = useToast();
+
 const confirmDelete = () => {
+  if (!selectedRow.value) return;
+
   emit('delete', selectedRow.value);
 
   toast.add({
@@ -45,7 +50,12 @@ const closeModal = () => {
   <vxe-table :data="users" :loading="loading" border height="100%" auto-resize>
     <vxe-column title="Действия" width="120" align="center">
       <template #default="{ row }">
-        <button class="delete-btn" @click="openModal(row)">Удалить</button>
+        <button
+          class="cursor-pointer rounded-md border border-[#ff4d4f] bg-transparent px-2.5 py-1 text-xs text-[#ff4d4f] hover:bg-[#ff4d4f] hover:text-white"
+          @click="openModal(row)"
+        >
+          Удалить
+        </button>
       </template>
     </vxe-column>
 
@@ -53,52 +63,14 @@ const closeModal = () => {
 
     <vxe-column field="age" title="Возраст" />
   </vxe-table>
-  <div v-if="isModalOpen" class="modal-backdrop">
-    <div class="modal">
+  <div v-if="isModalOpen" class="fixed inset-0 flex items-center justify-center bg-black/40">
+    <div class="min-w-[280px] rounded-lg bg-white p-4">
       <p>Удалить строку №{{ selectedRow?.id }}?</p>
 
-      <div class="actions">
+      <div class="mt-4 flex justify-end gap-2">
         <button @click="confirmDelete">Да</button>
         <button @click="closeModal">Нет</button>
       </div>
     </div>
   </div>
 </template>
-
-<style scoped>
-.delete-btn {
-  padding: 4px 10px;
-  border-radius: 6px;
-  border: 1px solid #ff4d4f;
-  background: transparent;
-  color: #ff4d4f;
-  cursor: pointer;
-  font-size: 12px;
-}
-
-.delete-btn:hover {
-  background: #ff4d4f;
-  color: white;
-}
-.modal-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.modal {
-  background: white;
-  padding: 16px;
-  border-radius: 8px;
-  min-width: 280px;
-}
-
-.actions {
-  display: flex;
-  gap: 8px;
-  justify-content: flex-end;
-}
-</style>

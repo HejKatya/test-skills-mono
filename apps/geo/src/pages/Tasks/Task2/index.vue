@@ -25,8 +25,8 @@ const handleDelete = (row: User) => {
 
 <template>
   <h2 class="text-xl font-bold">Задание 2</h2>
-  <div class="page">
-    <div class="info w-150">
+  <div class="page h-[calc(100vh-560px)] flex flex-col gap-[10px]">
+    <div class="info w-150 flex-none">
       <h3 class="text-lg font-semi">Подготовка</h3>
 
       1. Устанавливаем менеджер инструментов: winget install jdx.mise <br />
@@ -49,15 +49,3 @@ const handleDelete = (row: User) => {
     <UsersTable :users="localUsers" :loading="isLoading" @delete="handleDelete" />
   </div>
 </template>
-<style scoped>
-.page {
-  height: calc(100vh - 560px);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.info {
-  flex: 0;
-}
-</style>
